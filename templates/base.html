@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}{{ title or "Mi sitio Flask" }}{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a href="{{ url_for('index') }}">Inicio</a>
+      <a href="{{ url_for('about') }}">Acerca de</a>
+      <a href="{{ url_for('listar_productos') }}">Productos</a>
+      <a href="{{ url_for('leer_datos') }}">Leer Datos</a>
+      <a href="{{ url_for('listar_clientes') }}">Clientes</a>
+        <a >Inventario </a>
+        <a >Ventas </a>
+        <a >Proveedores </a>
+
+    </nav>
+  </header>
+{% with msgs = get_flashed_messages(with_categories=true) %}
+  {% if msgs %}
+    <div class="flash-container">
+      {% for cat, msg in msgs %}
+        <div class="flash {{ cat }}">{{ msg }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <small>© {{ 2025 }} Derechos de autor</small>
+  </footer>
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
