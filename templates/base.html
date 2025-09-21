@@ -1,44 +1,79 @@
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{% block title %}{{ title or "Mi sitio Flask" }}{% endblock %}</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-  {% block extra_css %}{% endblock %}
-</head>
-<body>
-  <header class="site-header">
-    <nav class="nav">
-      <a href="{{ url_for('index') }}">Inicio</a>
-      <a href="{{ url_for('about') }}">Acerca de</a>
-      <a href="{{ url_for('listar_productos') }}">Productos</a>
-      <a href="{{ url_for('leer_datos') }}">Leer Datos</a>
-      <a href="{{ url_for('listar_clientes') }}">Clientes</a>
-        <a >Inventario </a>
-        <a >Ventas </a>
-        <a >Proveedores </a>
+{% extends "base.html" %}
+{% block title %}Inicio{% endblock %}
 
-    </nav>
-  </header>
-{% with msgs = get_flashed_messages(with_categories=true) %}
-  {% if msgs %}
-    <div class="flash-container">
-      {% for cat, msg in msgs %}
-        <div class="flash {{ cat }}">{{ msg }}</div>
-      {% endfor %}
+{% block content %}
+<div class="container mt-4">
+
+  <div class="text-center">
+    <h1 class="display-4">¡Bienvenido a Tu Supermercado de Confianza!</h1>
+    <p class="lead">En <strong>Supermercado AmazoniaMarket</strong>, encuentras todo lo que necesitas al mejor precio:
+      frutas, verduras, abarrotes, limpieza, carnes ¡y más!</p>
+    <a href="/productos" class="btn btn-success btn-lg mt-3">Ver Productos</a>
+  </div>
+
+  <div class="mt-5 text-center">
+    <img src="{{ url_for('static', filename='img/supermercado_portada.jpg') }}"
+         alt="Supermercado El Gran Aki"
+         class="img-fluid rounded shadow"
+         style="max-height: 400px;">
+  </div>
+
+  <div class="mt-5">
+    <h2>¿Por qué elegirnos?</h2>
+    <ul>
+      <li>✅ Precios bajos todos los días</li>
+      <li>✅ Gran variedad de productos</li>
+      <li>✅ Atención cercana y personalizada</li>
+      <li>✅ Promociones semanales y descuentos exclusivos</li>
+    </ul>
+  </div>
+
+  <div class="mt-5">
+    <h2>Promociones destacadas</h2>
+    <div class="row">
+
+      <!-- Tarjeta 1 -->
+      <div class="col-md-4">
+        <div class="card shadow-sm mb-4">
+          <div class="card-img-container">
+            <img src="{{ url_for('static', filename='img/promocion_1.jpg') }}" alt="Oferta 1">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Arroz 5kg</h5>
+            <p class="card-text">¡Llévalo por solo $4.99 esta semana!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 2 -->
+      <div class="col-md-4">
+        <div class="card shadow-sm mb-4">
+          <div class="card-img-container">
+            <img src="{{ url_for('static', filename='img/promocion_2.jpg') }}" alt="Oferta 2">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Aceite de cocina</h5>
+            <p class="card-text">Precio especial: $2.79</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 3 -->
+      <div class="col-md-4">
+        <div class="card shadow-sm mb-4">
+          <div class="card-img-container">
+            <img src="{{ url_for('static', filename='img/promocion_3.jpg') }}" alt="Oferta 3">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Combo frutas frescas</h5>
+            <p class="card-text">Ideal para tu semana, desde $3.50</p>
+          </div>
+        </div>
+      </div>
+
     </div>
-  {% endif %}
-{% endwith %}
+  </div>
 
-  <main class="container">
-    {% block content %}{% endblock %}
-  </main>
-
-  <footer class="site-footer">
-    <small>© {{ 2025 }} Derechos de autor</small>
-  </footer>
-
-  {% block extra_js %}{% endblock %}
-</body>
-</html>
+</div>
+{% endblock %}
+{# Fin del bloque de contenido #}
